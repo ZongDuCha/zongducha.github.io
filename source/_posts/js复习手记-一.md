@@ -32,6 +32,7 @@ Object.getPrototypeOf(a) === Array.prototype
 Object.prototype.toString.apply(a) === '[Object Array]'
 
 ```
+
 <!-- more -->
 
 一般主流框架都是基于最后一种方式去判断
@@ -68,6 +69,11 @@ Object.prototype.toString.call([])                  // "[object Array]"
 Object.prototype.toString.call(new　Array)          // "[object Array]"
 
 ```
+
+### typeof 
+
+typeof 一般只返回 `number` `boolean` `string` `function(函数)` `object(object,数组,对象)` `undefined`
+
 
 ### Object.getOwnPropertyNames()  遍历方法
 
