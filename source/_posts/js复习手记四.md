@@ -4,7 +4,9 @@ date: 2018-02-04 15:56:16
 tags: 主页
 ---
 
-### 闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。
+### 闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就
+
+是在提供了一个在外部访问另一个函数内部局部变量的方式。
 <!-- more -->
 
 ```js
@@ -36,9 +38,13 @@ add()
 // 3
 ```
 
-### Element.matches() 如果元素包含指定的选择器字符串，存在返回true，不存在则返回false
+### Element.matches() 如果元素包含指定的选择器字符串，存在返回true，
 
-#### 目前在非标准名称 `matchesSelector()` 实现了这个方法，并且不同浏览器使用前需要前缀。
+不存在则返回false
+
+#### 目前在非标准名称 `matchesSelector()` 实现了这个方法，并且不同浏览
+
+器使用前需要前缀。
 
 - el.matchesSelector( DOMElement element, String selector )
 
@@ -64,7 +70,9 @@ if (!Element.prototype.matchesSelector) {
     Element.prototype.oMatchesSelector || 
     Element.prototype.webkitMatchesSelector ||
     (function(){
-            var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+            var matches = (this.document || this.ownerDocument).querySelectorAll
+
+(s),
             i = matches.length;
             while (--i >= 0 && matches.item(i) !== this) {}
             return !!i;
@@ -78,18 +86,28 @@ var ifAtt = body.matchesSelector('.main')
 console.log(ifAtt)
 ```
 
-需要注意的是：如果指定的选择器是数字开头的则会报错，如class="1mian",id="1main"
+需要注意的是：如果指定的选择器是数字开头的则会报错，如
 
-参考文献：https://www.lyblog.net/detail/601.html  ,   https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches
+class="1mian",id="1main"
+
+参考文献：https://www.lyblog.net/detail/601.html  ,   
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches
 
 
 ### getComputedStyle和currentStyle
 
-element.style 获取的是内联样式或设置样式 , 如果获取指定的属性名  style中不存在则返回空
+element.style 获取的是内联样式或设置样式 , 如果获取指定的属性名  style中
 
-element.currentStyle 这是ie专有的属性，只在ie下支持，在获取未设置的属性值时,currentStyle会读取浏览器的默认值
+不存在则返回空
 
-document.defaultView.getComputedStyle(element,null) ie6~ie8是不支持的，获取属性和currentStyle类似
+element.currentStyle 这是ie专有的属性，只在ie下支持，在获取未设置的属性
+
+值时,currentStyle会读取浏览器的默认值
+
+document.defaultView.getComputedStyle(element,null) ie6~ie8是不支持的，
+
+获取属性和currentStyle类似
 
 ```js
 <div style="height:100px"></div>
@@ -122,3 +140,158 @@ Element.prototype.getComputedStyle = function(x){
 div.getComputedStyle('height')
 // "100px"
 ```
+
+
+CSS 实现水平垂直居中
+```html
+<div class="wrapper">
+    <div class="slide">1</div>
+</div>
+```
+
+##### 1.position+auto
+```css
+.wrapper{
+    width:100px;height:100px;
+    position:relative;background:#ddd;
+}
+
+.slide{
+    width:50px;height:50px;
+    position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;
+    background:#ff0000;
+}
+```
+
+这个居中方案比较简单常用，IE8及以上支持
+但是有一点需要注意：宽度和高度不能是auto，否则高宽会继承 限制他的元素（relative）;下一个方案解决这问题：
+
+##### 2. table-cell
+```css
+.wrapper{
+    width:100px;height:100px;
+    display:table-cell;/* 让 vertical-align: middle; 生效 */
+    background:#ddd;vertical-align: middle;
+    text-align: center;
+}
+
+.slide{
+    display:inline-block;
+    vertical-align:middle;
+    background:#ff0000;
+}
+```
+
+这个方案可以解决上一个需要设置高宽的问题，IE8及以上支持。这里除了给父父元素一个vertical-align: middle;之外，我们还需要给需要水平垂直居中的元素也添加vertical-align: middle;属性。如果不添加，那么在垂直方向上会有几个像素的误差。
+
+##### 3.position+margin/absolute/translate
+
+```css
+// 形式一
+.wrapper{
+    width:100px;height:100px;
+    position:relative;background:#ddd;
+}
+
+.slide{
+    width: 50px;
+    height: 50px;
+    background: #ff0000;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    margin-top:-25px;margin-left:-25px;
+}
+
+
+
+// 形式二
+.wrapper{
+    width:100px;height:100px;
+    position:relative;background:#ddd;
+}
+
+.slide{
+    width: 50px;
+    height: 50px;
+    background: #ff0000;
+    position: absolute;
+    top:25px;left:25px;
+}
+
+
+
+// 形式三
+.wrapper{
+    width:100px;height:100px;
+    position:relative;background:#ddd;
+}
+
+.slide{
+    width: 50px;
+    height: 50px;
+    background: #ff0000;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    transform: translate(-50%,-50%);
+}
+```
+前两个都差不多，需要自己计算数值并且需要设置宽高，IE5及以上支持推荐使用第三个方案，利用translate按自身的高宽百分比移动，达到居中效果,IE9及以上支持
+
+##### 4.Flex
+```css
+.wrapper{
+    width:100px;height:100px;
+    background:#ddd;display:flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center;/* 水平居中 */
+}
+
+.slide{
+    background: #ff0000;
+}
+```
+不需要设置元素高宽，且简单，就可以达到居中效果，但是….IE10及以上才支持。移动端兼容良好，推荐在移动端使用
+
+##### 5.Flex+margin
+
+```css
+.wrapper{
+    width:100px;height:100px;
+    background:#ddd;display:flex;
+}
+
+.slide{
+    background: #ff0000;margin:auto;
+}
+```
+兼容性：IE10及以上 ,这种方法跟第4种方法比较起来代码也更加简洁。
+
+##### 网上终极法
+
+```css
+.demo-wrap{height: 200px;
+    width: 200px;
+    display: table;
+    position: relative;
+    background: #eee;
+}
+.demo-center{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+   *position: absolute;
+   *top: 50%;
+   *left: 50%;
+}
+.center{
+    background: #ccc;
+    display: inline-block;
+   *position:relative;
+   *top: -50%;
+   *left: -50%;
+ }
+```
+参考：https://juejin.im/post/58f818bbb123db006233ab2a
+https://segmentfault.com/a/1190000011942746?_ea=2818653
