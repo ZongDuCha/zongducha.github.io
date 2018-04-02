@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>function和=&gt;的区别 | Blog</title>
+  <title>function和箭头函数的区别 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="有次在元素onclick事件中使用 箭头函数打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因 1234document.querySelector(&apos;p&apos;).onclick = () =&amp;gt; &amp;#123;    console.log(this)&amp;#125;// window">
 <meta name="keywords" content="主页">
 <meta property="og:type" content="article">
-<meta property="og:title" content="function和=&gt;的区别">
-<meta property="og:url" content="http://yoursite.com/2018/02/04/function和-的区别/index.html">
+<meta property="og:title" content="function和箭头函数的区别">
+<meta property="og:url" content="http://yoursite.com/2018/02/05/function和箭头函数的区别/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="有次在元素onclick事件中使用 箭头函数打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因 1234document.querySelector(&apos;p&apos;).onclick = () =&amp;gt; &amp;#123;    console.log(this)&amp;#125;// window">
-<meta property="og:updated_time" content="2018-02-04T13:53:25.398Z">
+<meta property="og:updated_time" content="2018-03-31T10:03:36.891Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="function和=&gt;的区别">
+<meta name="twitter:title" content="function和箭头函数的区别">
 <meta name="twitter:description" content="有次在元素onclick事件中使用 箭头函数打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因 1234document.querySelector(&apos;p&apos;).onclick = () =&amp;gt; &amp;#123;    console.log(this)&amp;#125;// window">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
@@ -153,40 +153,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-function和-的区别" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-function和箭头函数的区别" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      function和=&gt;的区别
+      function和箭头函数的区别
     </h1>
   
 
         
-        <a href="/2018/02/04/function和-的区别/" class="archive-article-date">
-  	<time datetime="2018-02-04T13:33:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-04</time>
+        <a href="/2018/02/05/function和箭头函数的区别/" class="archive-article-date">
+  	<time datetime="2018-02-05T14:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有次在元素onclick事件中使用 <code>箭头函数</code>打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因</p>
+        <p>有次在元素onclick事件中使用 箭头函数打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'p'</span>).onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// window</span></span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="箭头函数-Arrow-functions-：箭头函数与现有函数不同，但并不是用来替代现有函数的，他一般是用来作为回调函数使用的，主要目的是为了简化回调函数的写法："><a href="#箭头函数-Arrow-functions-：箭头函数与现有函数不同，但并不是用来替代现有函数的，他一般是用来作为回调函数使用的，主要目的是为了简化回调函数的写法：" class="headerlink" title="箭头函数 Arrow functions ：箭头函数与现有函数不同，但并不是用来替代现有函数的，他一般是用来作为回调函数使用的，主要目的是为了简化回调函数的写法："></a>箭头函数 Arrow functions ：箭头函数与现有函数不同，但并不是用来替代现有函数的，他一般是用来作为回调函数使用的，主要目的是为了简化回调函数的写法：</h3><ul>
-<li><p>箭头函数本身是没有this的，函数内的this执行箭头函数 定义时所在的对象，而不是使用时所在的对象，</p>
-</li>
-<li><p>箭头函数内部，不存在arguments对象</p>
-</li>
-<li><p>不可以当作构造函数，不可以使用new指令</p>
-</li>
-<li><p>简化回调函数</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'p'</span>).onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// windoiw  使用箭头函数自身是没有this值的</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = <span class="string">'1'</span>;</span><br><span class="line"><span class="keyword">var</span> set = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line">set(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// ReferenceError: arguments is not defined</span></span><br><span class="line"><span class="comment">// 箭头函数没有arguments值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> set(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">set = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> set(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// Uncaught TypeError: set is not a constructor</span></span><br><span class="line"><span class="comment">// 一般函数可以用new指令，但是箭头函数不能使用new指令</span></span><br></pre></td></tr></table></figure>
+<p>箭头函数 Arrow functions ：箭头函数与现有函数不同，但并不是用来替代现有函数的，他一般是用来作为回调函数使用的，主要目的是为了简化回调函数的写法：<br>箭头函数本身是没有this的，函数内的this执行箭头函数 定义时所在的对象，而不是使用时所在的对象，</p>
+<p>箭头函数内部，不存在arguments对象</p>
+<p>不可以当作构造函数，不可以使用new指令</p>
+<p>简化回调函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'p'</span>).onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// windoiw  使用箭头函数自身是没有this值的</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = <span class="string">'1'</span>;</span><br><span class="line"><span class="keyword">var</span> set = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">&#125;</span><br><span class="line">set(<span class="number">2</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// ReferenceError: arguments is not defined</span></span><br><span class="line"><span class="comment">// 箭头函数没有arguments值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">set</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> set(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">set = <span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> set(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// Uncaught TypeError: set is not a constructor</span></span><br><span class="line"><span class="comment">// 一般函数可以用new指令，但是箭头函数不能使用new指令</span></span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -276,7 +270,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/04/function和-的区别/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/05/function和箭头函数的区别/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,6 +283,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/03/31/js复习手记五/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js复习手记五
+        
+      </div>
+    </a>
   
   
     <a href="/2018/02/04/js复习手记四/" id="article-nav-older" class="article-nav-link-wrap">
@@ -320,7 +323,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="function和-的区别" data-title="function和=&gt;的区别" data-url="http://yoursite.com/2018/02/04/function和-的区别/"></div>
+	<div class="ds-thread" data-thread-key="function和箭头函数的区别" data-title="function和箭头函数的区别" data-url="http://yoursite.com/2018/02/05/function和箭头函数的区别/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -343,8 +346,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2018/02/04/function和-的区别/", 
-    sourceId: "function和-的区别",
+    url: "http://yoursite.com/2018/02/05/function和箭头函数的区别/", 
+    sourceId: "function和箭头函数的区别",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -353,7 +356,7 @@
   
 
   
-  <div id="SOHUCS" sid="function和-的区别" ></div> 
+  <div id="SOHUCS" sid="function和箭头函数的区别" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
@@ -461,6 +464,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">主页</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复习</a>
               </li>
              
               <li class="article-tag-list-item">

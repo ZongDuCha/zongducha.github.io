@@ -8,17 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>js复习手记五 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="触屏">
+  <meta name="description" content="从输入url到页面加载时发生了什么？可以分为六个过程：1、DNS解析 -&amp;gt; 2、TCP连接 -&amp;gt; 3、发送HTTP请求 -&amp;gt; 4、服务器处理请求并返回HTTP报文 -&amp;gt; 5、浏览器解析并渲染页面 -&amp;gt; 6、连接结束">
 <meta name="keywords" content="复习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js复习手记五">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/js复习手记五/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="触屏">
-<meta property="og:updated_time" content="2018-03-31T09:42:38.350Z">
+<meta property="og:description" content="从输入url到页面加载时发生了什么？可以分为六个过程：1、DNS解析 -&amp;gt; 2、TCP连接 -&amp;gt; 3、发送HTTP请求 -&amp;gt; 4、服务器处理请求并返回HTTP报文 -&amp;gt; 5、浏览器解析并渲染页面 -&amp;gt; 6、连接结束">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png">
+<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png">
+<meta property="og:updated_time" content="2018-04-02T06:29:12.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js复习手记五">
-<meta name="twitter:description" content="触屏">
+<meta name="twitter:description" content="从输入url到页面加载时发生了什么？可以分为六个过程：1、DNS解析 -&amp;gt; 2、TCP连接 -&amp;gt; 3、发送HTTP请求 -&amp;gt; 4、服务器处理请求并返回HTTP报文 -&amp;gt; 5、浏览器解析并渲染页面 -&amp;gt; 6、连接结束">
+<meta name="twitter:image" content="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -173,7 +176,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>触屏</p>
+        <h3 id="从输入url到页面加载时发生了什么？"><a href="#从输入url到页面加载时发生了什么？" class="headerlink" title="从输入url到页面加载时发生了什么？"></a>从输入url到页面加载时发生了什么？</h3><p>可以分为六个过程：<br><code>1、DNS解析</code> -&gt; <code>2、TCP连接</code> -&gt; <code>3、发送HTTP请求</code> -&gt; <code>4、服务器处理请求并返回HTTP报文</code> -&gt; <code>5、浏览器解析并渲染页面</code> -&gt; <code>6、连接结束</code></p>
+<a id="more"></a>
+<h4 id="dns解析"><a href="#dns解析" class="headerlink" title="dns解析"></a>dns解析</h4><p>每一个计算机实际上都有一个ip地址，但是用户不太方便记忆ip地址，所有就有了网址替换ip地址，dns解析就充当了一个翻译官，当用户在浏览器输入网址并打开的时候，实际上就是网址到ip地址的转换。</p>
+<h5 id="dns解析过程"><a href="#dns解析过程" class="headerlink" title="dns解析过程"></a>dns解析过程</h5><p>dns解析实际上是递归查询ip地址的过程</p>
+<p>输入地址打开后告诉本地dns服务器，如果没找到，则会进入下一级域名服务器查看，如此重复，比如：www.baidu.com,首先在本地域名服务器中查找ip地址，如果没有找到，本地域名服务器会向根域名服务器发送一个请求，如果跟域名服务器也不存在该域名的ip地址时，本地域名会向com顶级域名服务器发送一个请求，依次类推循环下去，直到最后本地域名服务器得到baidu的ip地址并缓存到本地，供下次使用，所有网址的解析过程为：<br><code>.</code> -&gt; <code>.com</code> -&gt; <code>baidu.com.</code> -&gt; <code>www.baidu.com.</code></p>
+<p>最后面的.对应根域名服务器</p>
+<p><code>根域名服务器</code> -&gt; <code>com顶级域名服务器</code> -&gt; <code>baidu.comy域名服务器</code> -&gt; <code>www.baidu.com</code></p>
+<h5 id="dns优化"><a href="#dns优化" class="headerlink" title="dns优化"></a>dns优化</h5><p><code>dns缓存</code></p>
+<p>dns有着多个缓存，从离浏览器的距离排序的话，<code>浏览器缓存</code> -&gt; <code>系统缓存</code> -&gt; <code>路由器缓存</code> -&gt; <code>ips缓存</code> -&gt; <code>根域名服务器缓存</code> -&gt; <code>顶级域名服务器缓存</code> -&gt; <code>主域名服务器缓存</code></p>
+<p>其主要优化的就是缓存这部分。</p>
+<p>不同浏览器的缓存机制不同： IE对DNS记录默认的缓存时间为30分钟，Firefox对DNS记录默认的缓存时间为1分钟，Chrome对DNS记录默认的缓存时间为1分钟。</p>
+<p>缓存时间长：减少DNS的重复查找，节省时间。<br>缓存时间短：及时检测服务器的IP变化，保证访问的正确性。</p>
+<p><code>减少dns查询次数</code></p>
+<p>DNS查询也消耗响应时间，若网页内容来自各个不同的domain，则客户端首次解析这些domain需要消耗一定的时间，但由于DNS查询结果会缓存在本地系统和浏览器中一段时间，所以DNS查询一般只是对首次访问时的速度有影响。</p>
+<p>减少DNS查询次数需要减少来自不同domain的请求的数量，如尽量将外部域的对象下载到本地服务器上等。</p>
+<h5 id="dns负载均衡"><a href="#dns负载均衡" class="headerlink" title="dns负载均衡"></a>dns负载均衡</h5><p>dns负载均衡又叫dns重定向，其主要作用是将用户的http请求，让最接近用户地理位置的dns服务器接收并返回请求，还有许多优化的手段</p>
+<h4 id="tcp链接"><a href="#tcp链接" class="headerlink" title="tcp链接"></a>tcp链接</h4><p><code>建立连接</code></p>
+<p>建立连接之前，服务器一直会打开端口并对其监听，当客户端主动和服务器端建立连接的时候，发起一个打开端口的请求（该端口一般为临时端口），然后进入三次握手的过程：</p>
+<p><code>TCP连接的三次握手过程</code></p>
+<p><strong>图解：</strong></p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png" alt=""></p>
+<p>TCP报文字段格式<br>（1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。<br>（2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。<br>（3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：</p>
+<pre><code>- （A）URG：紧急指针（urgent pointer）有效。
+- （B）ACK：确认序号有效。
+- （C）PSH：接收方应该尽快将这个报文交给应用层。
+- （D）RST：重置连接。
+- （E）SYN：发起一个新连接。
+- （F）FIN：释放一个连接。
+</code></pre><p>需要注意的是：</p>
+<pre><code>- （A）不要将确认序号Ack与标志位中的ACK搞混了。
+- （B）确认方Ack=发起方Req+1，两端配对。 
+</code></pre><ul>
+<li><p>第一次握手:client将标志位SYN置为1，随机产生一个值为seq=J；并将数据包发送给Server,Client进入SYN_SENT状态，等待server确认</p>
+</li>
+<li><p>第二次握手:Server收到数据包后由标志位SYN=1知道client请求建立连接，server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将数据包发送给client以确认连接请求，server进入SYN_RCVD状态。</p>
+</li>
+<li><p>第三次握手：client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则连接简历成功，Client和server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
+</li>
+</ul>
+<p><code>TCP的四次挥手过程</code></p>
+<p><strong>图解：</strong></p>
+<p><img src="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png" alt=""></p>
+<ul>
+<li><p>第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Cient进入FIN_WAIT_1</p>
+</li>
+<li><p>第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态</p>
+</li>
+<li><p>第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态</p>
+</li>
+<li><p>第四次挥手：Client收到FIN后,Client进入TIME_WAIT 状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
+</li>
+</ul>
+<p>详细参考：<a href="https://segmentfault.com/a/1190000006879700，" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006879700，</a><br><a href="https://www.cnblogs.com/chengyunshen/p/7196348.html，" target="_blank" rel="noopener">https://www.cnblogs.com/chengyunshen/p/7196348.html，</a><br><a href="https://www.cnblogs.com/xsilence/p/6034361.html" target="_blank" rel="noopener">https://www.cnblogs.com/xsilence/p/6034361.html</a>,<br><a href="https://blog.csdn.net/sssnmnmjmf/article/details/68486261" target="_blank" rel="noopener">https://blog.csdn.net/sssnmnmjmf/article/details/68486261</a></p>
 
       
 
@@ -279,8 +334,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2018/02/04/js复习手记四/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">js复习手记四</div>
+    <a href="/2018/02/05/function和箭头函数的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">function和箭头函数的区别</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -150,30 +150,106 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-function和-的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-js复习手记五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/04/function和-的区别/">function和=&gt;的区别</a>
+      <a class="article-title" href="/2018/03/31/js复习手记五/">js复习手记五</a>
     </h1>
   
 
         
-        <a href="/2018/02/04/function和-的区别/" class="archive-article-date">
-  	<time datetime="2018-02-04T13:33:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-04</time>
+        <a href="/2018/03/31/js复习手记五/" class="archive-article-date">
+  	<time datetime="2018-03-31T09:18:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有次在元素onclick事件中使用 <code>箭头函数</code>打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因</p>
+        <h3 id="从输入url到页面加载时发生了什么？"><a href="#从输入url到页面加载时发生了什么？" class="headerlink" title="从输入url到页面加载时发生了什么？"></a>从输入url到页面加载时发生了什么？</h3><p>可以分为六个过程：<br><code>1、DNS解析</code> -&gt; <code>2、TCP连接</code> -&gt; <code>3、发送HTTP请求</code> -&gt; <code>4、服务器处理请求并返回HTTP报文</code> -&gt; <code>5、浏览器解析并渲染页面</code> -&gt; <code>6、连接结束</code></p>
+        
+          <a class="article-more-a" href="/2018/03/31/js复习手记五/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/31/js复习手记五/"> - 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-function和箭头函数的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/05/function和箭头函数的区别/">function和箭头函数的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/05/function和箭头函数的区别/" class="archive-article-date">
+  	<time datetime="2018-02-05T14:30:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有次在元素onclick事件中使用 箭头函数打印this,却不是当前的元素对象，而是window，本就好奇心严重的我就带着疑问去找原因</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'p'</span>).onclick = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// window</span></span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2018/02/04/function和-的区别/#more">more >></a>
+          <a class="article-more-a" href="/2018/02/05/function和箭头函数的区别/#more">more >></a>
         
       
 
@@ -197,7 +273,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/04/function和-的区别/"> - 展开全文 >></a>
+          <a class="article-more-a" href="/2018/02/05/function和箭头函数的区别/"> - 展开全文 >></a>
         </p>
       
 
@@ -247,7 +323,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="闭包-会持有父方法的局部变量并且不会随着父方法的销毁而销毁-闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。"><a href="#闭包-会持有父方法的局部变量并且不会随着父方法的销毁而销毁-闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。" class="headerlink" title="闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。"></a>闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。</h3>
+        <h3 id="闭包-会持有父方法的局部变量并且不会随着父方法的销毁而销毁-闭包就"><a href="#闭包-会持有父方法的局部变量并且不会随着父方法的销毁而销毁-闭包就" class="headerlink" title="闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就"></a>闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就</h3><p>是在提供了一个在外部访问另一个函数内部局部变量的方式。<br>
         
           <a class="article-more-a" href="/2018/02/04/js复习手记四/#more">more >></a>
         
@@ -786,7 +862,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="坚持每年看6本书"><a href="#坚持每年看6本书" class="headerlink" title="坚持每年看6本书"></a>坚持每年看6本书</h1><h3 id="bootstrap-完成：2018-1-5"><a href="#bootstrap-完成：2018-1-5" class="headerlink" title="bootstrap 完成：2018-1-5"></a>bootstrap 完成：2018-1-5</h3><h3 id="Vue实践解密"><a href="#Vue实践解密" class="headerlink" title="Vue实践解密"></a>Vue实践解密</h3><h3 id="高性能响应式Web开发实战及实际案例-完成：2018-1-20"><a href="#高性能响应式Web开发实战及实际案例-完成：2018-1-20" class="headerlink" title="高性能响应式Web开发实战及实际案例 完成：2018-1-20"></a>高性能响应式Web开发实战及实际案例 完成：2018-1-20</h3><h3 id="创意VC"><a href="#创意VC" class="headerlink" title="创意VC"></a>创意VC</h3><h3 id="李彦宏-百度与智能时代的畅想"><a href="#李彦宏-百度与智能时代的畅想" class="headerlink" title="李彦宏:百度与智能时代的畅想"></a>李彦宏:百度与智能时代的畅想</h3>
+        <h1 id="坚持每年看6本书"><a href="#坚持每年看6本书" class="headerlink" title="坚持每年看6本书"></a>坚持每年看6本书</h1><h3 id="bootstrap-完成：2018-1-5"><a href="#bootstrap-完成：2018-1-5" class="headerlink" title="bootstrap 完成：2018-1-5"></a>bootstrap 完成：2018-1-5</h3><h3 id="Vue实践解密"><a href="#Vue实践解密" class="headerlink" title="Vue实践解密"></a>Vue实践解密</h3><h3 id="高性能响应式Web开发实战及实际案例-完成：2018-1-20"><a href="#高性能响应式Web开发实战及实际案例-完成：2018-1-20" class="headerlink" title="高性能响应式Web开发实战及实际案例 完成：2018-1-20"></a>高性能响应式Web开发实战及实际案例 完成：2018-1-20</h3><h3 id="创意VC"><a href="#创意VC" class="headerlink" title="创意VC"></a>创意VC</h3><h3 id="李彦宏-百度与智能时代的畅想151-101-229-147"><a href="#李彦宏-百度与智能时代的畅想151-101-229-147" class="headerlink" title="李彦宏:百度与智能时代的畅想151.101.229.147"></a>李彦宏:百度与智能时代的畅想151.101.229.147</h3>
       
 
       
@@ -799,87 +875,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/01/09/书籍时间记录/"> - 展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css-Grid" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/css-Grid/">css-Grid</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/02/css-Grid/" class="archive-article-date">
-  	<time datetime="2018-01-02T10:05:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote><a href="https://github.com/ZongDuCha/ZD-1.0" target="_blank" rel="noopener">首发于：</a><a href="https://github.com/ZongDuCha/ZD-1.0" target="_blank" rel="noopener">https://github.com/ZongDuCha/ZD-1.0</a><br><a href="https://juejin.im/post/5a374a905188257d38440e4b" target="_blank" rel="noopener">掘金：</a><a href="https://juejin.im/post/5a374a905188257d38440e4b" target="_blank" rel="noopener">https://juejin.im/post/5a374a905188257d38440e4b</a></blockquote>
-
-
-<p>display:gri</p>
-<p>最近时间在了解css3 中不太常用的grid布局，但是却又非常的好用</p>
-<p>以前不管我们怎么布局，大多数用的都是一维布局，在复杂的场景下非常难用</p>
-        
-          <a class="article-more-a" href="/2018/01/02/css-Grid/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">主页</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/02/css-Grid/"> - 展开全文 >></a>
         </p>
       
 
@@ -1008,6 +1003,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">主页</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">复习</a>
               </li>
              
               <li class="article-tag-list-item">
