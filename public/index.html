@@ -12,6 +12,7 @@
 <meta property="og:title" content="Blog">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Blog">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Blog">
   
@@ -170,45 +171,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。</p>
-<h5 id="闭包的特性："><a href="#闭包的特性：" class="headerlink" title="闭包的特性："></a>闭包的特性：</h5><ul>
-<li><p>函数中嵌套函数</p>
-</li>
-<li><p>闭包函数可以访问外层作用域的参数和变量 （沿着作用域链寻找）</p>
-</li>
-<li><p>闭包内的参数和变量不会被垃圾回收机制回收</p>
-</li>
-<li><p>封装变量，类似其他语言的私有变量，来限制变量的作用域</p>
-</li>
-</ul>
-<h5 id="闭包的优缺"><a href="#闭包的优缺" class="headerlink" title="闭包的优缺"></a>闭包的优缺</h5><ul>
-<li><p>创建是为了访问私有方法和变量。可以避免全局变量污染</p>
-</li>
-<li><p>但是闭包会保存在内存中，会增大内存的占有率，使用不当容易造成内存泄漏，</p>
-</li>
-<li><p>在js中，函数就是闭包，只有函数才能产生作用域的概念</p>
-</li>
-<li><p>闭包和循环如果同时使用的话有时会有问题，因为闭包内的变量是保存变化的，如果创建闭包之后再使用函数的话，循环里的 i 可能会一直是最后一个值（比如最大值）。</p>
-</li>
-</ul>
-<h2 id="js作用域"><a href="#js作用域" class="headerlink" title="js作用域"></a>js作用域</h2><p><code>全局作用域</code>:</p>
-<p>在js中，最外层定义的变量拥有全局作用域，对任何内容来说，都是可以访问的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'js'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b(); <span class="comment">// js</span></span><br></pre></td></tr></table></figure>
-<p><code>局部作用域</code>:</p>
-<p>局部作用域在函数内部定义的变量，一般只有在当前作用域内下可以访问，而对于函数外部是不可以访问的，但是函数内部定义变量一定要写var命令，不然等同于生成了全局作用域。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="string">'js'</span></span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// ReferenceError: b is not defined</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    b = <span class="string">'js'</span></span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line"><span class="built_in">console</span>.log(b) <span class="comment">// js</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>javascript的作用域是相对函数而言的，可以称为函数作用域</p>
-</li>
-<li><p>所以并不是用var声明的变量作用范围起止于花括号之间，javascript并没有块级作用域</p>
-</li>
-</ul>
-<h2 id="js作用域链"><a href="#js作用域链" class="headerlink" title="js作用域链"></a>js作用域链</h2><p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
-<p>当代码在一个环境中执行时，都会生成一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
-<p>整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表。作用域链的最前端，始终是当前正在执行的代码所在环境的变量对象。</p>
-<p>作用域链中的下一个变量对象来自该函数的包含环境，而再下一个变量对象来自再下一个包含环境。这样，一直延续到全局执行环境，全局执行环境的Variable Object始终是作用域链中的最后一个对象。</p>
-<p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
-
+        <h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2>
+        
+          <a class="article-more-a" href="/2018/04/19/js复习手记六/#more">more >></a>
+        
       
 
       
@@ -221,82 +187,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/04/19/js复习手记六/"> - 展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-js复习手记五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/31/js复习手记五/">js复习手记五</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/31/js复习手记五/" class="archive-article-date">
-  	<time datetime="2018-03-31T09:18:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="css3新增的伪类"><a href="#css3新增的伪类" class="headerlink" title="css3新增的伪类"></a>css3新增的伪类</h3>
-        
-          <a class="article-more-a" href="/2018/03/31/js复习手记五/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">复习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/31/js复习手记五/"> - 展开全文 >></a>
         </p>
       
 
@@ -373,6 +263,82 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/03/31/从输入url到页面加载时发生了什么？/"> - 展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-js复习手记五" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/31/js复习手记五/">js复习手记五</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/31/js复习手记五/" class="archive-article-date">
+  	<time datetime="2018-03-31T09:18:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="css3新增的伪类"><a href="#css3新增的伪类" class="headerlink" title="css3新增的伪类"></a>css3新增的伪类</h3>
+        
+          <a class="article-more-a" href="/2018/03/31/js复习手记五/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/31/js复习手记五/"> - 展开全文 >></a>
         </p>
       
 
