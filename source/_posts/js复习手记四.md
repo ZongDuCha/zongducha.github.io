@@ -142,7 +142,7 @@ div.getComputedStyle('height')
 ```
 
 
-CSS 实现水平垂直居中
+### CSS 实现水平垂直居中
 ```html
 <div class="wrapper">
     <div class="slide">1</div>

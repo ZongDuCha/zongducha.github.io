@@ -8,20 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>js复习手记五 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从输入url到页面加载时发生了什么？可以分为六个过程：1、DNS解析 -&amp;gt; 2、TCP连接 -&amp;gt; 3、发送HTTP请求 -&amp;gt; 4、服务器处理请求并返回HTTP报文 -&amp;gt; 5、浏览器解析并渲染页面 -&amp;gt; 6、连接结束">
+  <meta name="description" content="css3新增的伪类">
 <meta name="keywords" content="复习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js复习手记五">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/js复习手记五/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="从输入url到页面加载时发生了什么？可以分为六个过程：1、DNS解析 -&amp;gt; 2、TCP连接 -&amp;gt; 3、发送HTTP请求 -&amp;gt; 4、服务器处理请求并返回HTTP报文 -&amp;gt; 5、浏览器解析并渲染页面 -&amp;gt; 6、连接结束">
-<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png">
-<meta property="og:image" content="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png">
-<meta property="og:updated_time" content="2018-04-02T06:29:12.738Z">
+<meta property="og:description" content="css3新增的伪类">
+<meta property="og:updated_time" content="2018-04-19T05:34:23.162Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js复习手记五">
-<meta name="twitter:description" content="从输入url到页面加载时发生了什么？可以分为六个过程：1、DNS解析 -&amp;gt; 2、TCP连接 -&amp;gt; 3、发送HTTP请求 -&amp;gt; 4、服务器处理请求并返回HTTP报文 -&amp;gt; 5、浏览器解析并渲染页面 -&amp;gt; 6、连接结束">
-<meta name="twitter:image" content="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png">
+<meta name="twitter:description" content="css3新增的伪类">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -176,59 +173,116 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="从输入url到页面加载时发生了什么？"><a href="#从输入url到页面加载时发生了什么？" class="headerlink" title="从输入url到页面加载时发生了什么？"></a>从输入url到页面加载时发生了什么？</h3><p>可以分为六个过程：<br><code>1、DNS解析</code> -&gt; <code>2、TCP连接</code> -&gt; <code>3、发送HTTP请求</code> -&gt; <code>4、服务器处理请求并返回HTTP报文</code> -&gt; <code>5、浏览器解析并渲染页面</code> -&gt; <code>6、连接结束</code></p>
-<a id="more"></a>
-<h4 id="dns解析"><a href="#dns解析" class="headerlink" title="dns解析"></a>dns解析</h4><p>每一个计算机实际上都有一个ip地址，但是用户不太方便记忆ip地址，所有就有了网址替换ip地址，dns解析就充当了一个翻译官，当用户在浏览器输入网址并打开的时候，实际上就是网址到ip地址的转换。</p>
-<h5 id="dns解析过程"><a href="#dns解析过程" class="headerlink" title="dns解析过程"></a>dns解析过程</h5><p>dns解析实际上是递归查询ip地址的过程</p>
-<p>输入地址打开后告诉本地dns服务器，如果没找到，则会进入下一级域名服务器查看，如此重复，比如：www.baidu.com,首先在本地域名服务器中查找ip地址，如果没有找到，本地域名服务器会向根域名服务器发送一个请求，如果跟域名服务器也不存在该域名的ip地址时，本地域名会向com顶级域名服务器发送一个请求，依次类推循环下去，直到最后本地域名服务器得到baidu的ip地址并缓存到本地，供下次使用，所有网址的解析过程为：<br><code>.</code> -&gt; <code>.com</code> -&gt; <code>baidu.com.</code> -&gt; <code>www.baidu.com.</code></p>
-<p>最后面的.对应根域名服务器</p>
-<p><code>根域名服务器</code> -&gt; <code>com顶级域名服务器</code> -&gt; <code>baidu.comy域名服务器</code> -&gt; <code>www.baidu.com</code></p>
-<h5 id="dns优化"><a href="#dns优化" class="headerlink" title="dns优化"></a>dns优化</h5><p><code>dns缓存</code></p>
-<p>dns有着多个缓存，从离浏览器的距离排序的话，<code>浏览器缓存</code> -&gt; <code>系统缓存</code> -&gt; <code>路由器缓存</code> -&gt; <code>ips缓存</code> -&gt; <code>根域名服务器缓存</code> -&gt; <code>顶级域名服务器缓存</code> -&gt; <code>主域名服务器缓存</code></p>
-<p>其主要优化的就是缓存这部分。</p>
-<p>不同浏览器的缓存机制不同： IE对DNS记录默认的缓存时间为30分钟，Firefox对DNS记录默认的缓存时间为1分钟，Chrome对DNS记录默认的缓存时间为1分钟。</p>
-<p>缓存时间长：减少DNS的重复查找，节省时间。<br>缓存时间短：及时检测服务器的IP变化，保证访问的正确性。</p>
-<p><code>减少dns查询次数</code></p>
-<p>DNS查询也消耗响应时间，若网页内容来自各个不同的domain，则客户端首次解析这些domain需要消耗一定的时间，但由于DNS查询结果会缓存在本地系统和浏览器中一段时间，所以DNS查询一般只是对首次访问时的速度有影响。</p>
-<p>减少DNS查询次数需要减少来自不同domain的请求的数量，如尽量将外部域的对象下载到本地服务器上等。</p>
-<h5 id="dns负载均衡"><a href="#dns负载均衡" class="headerlink" title="dns负载均衡"></a>dns负载均衡</h5><p>dns负载均衡又叫dns重定向，其主要作用是将用户的http请求，让最接近用户地理位置的dns服务器接收并返回请求，还有许多优化的手段</p>
-<h4 id="tcp链接"><a href="#tcp链接" class="headerlink" title="tcp链接"></a>tcp链接</h4><p><code>建立连接</code></p>
-<p>建立连接之前，服务器一直会打开端口并对其监听，当客户端主动和服务器端建立连接的时候，发起一个打开端口的请求（该端口一般为临时端口），然后进入三次握手的过程：</p>
-<p><code>TCP连接的三次握手过程</code></p>
-<p><strong>图解：</strong></p>
-<p><img src="http://blog.chinaunix.net/attachment/201304/8/22312037_1365405910EROI.png" alt=""></p>
-<p>TCP报文字段格式<br>（1）序号：Seq序号，占32位，用来标识从TCP源端向目的端发送的字节流，发起方发送数据时对此进行标记。<br>（2）确认序号：Ack序号，占32位，只有ACK标志位为1时，确认序号字段才有效，Ack=Seq+1。<br>（3）标志位：共6个，即URG、ACK、PSH、RST、SYN、FIN等，具体含义如下：</p>
-<pre><code>- （A）URG：紧急指针（urgent pointer）有效。
-- （B）ACK：确认序号有效。
-- （C）PSH：接收方应该尽快将这个报文交给应用层。
-- （D）RST：重置连接。
-- （E）SYN：发起一个新连接。
-- （F）FIN：释放一个连接。
-</code></pre><p>需要注意的是：</p>
-<pre><code>- （A）不要将确认序号Ack与标志位中的ACK搞混了。
-- （B）确认方Ack=发起方Req+1，两端配对。 
-</code></pre><ul>
-<li><p>第一次握手:client将标志位SYN置为1，随机产生一个值为seq=J；并将数据包发送给Server,Client进入SYN_SENT状态，等待server确认</p>
+        <h3 id="css3新增的伪类"><a href="#css3新增的伪类" class="headerlink" title="css3新增的伪类"></a>css3新增的伪类</h3><a id="more"></a>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[class ^=val]</span> 属性值以<span class="selector-tag">val</span>开头的<span class="selector-tag">class</span>节点元素</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[class $=val]</span> 属性值以<span class="selector-tag">val</span>结尾的<span class="selector-tag">class</span>节点元素</span><br><span class="line"></span><br><span class="line"><span class="selector-attr">[class *=val]</span> 属性值包含了<span class="selector-tag">val</span>的<span class="selector-tag">class</span>节点元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-of-type</span>  在父元素的子元素中选择第一个<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:last-of-type</span>  在父元素的子元素中选择最后一个<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:only-of-type(n)</span>  在父元素的子元素中选择唯一的<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:nth-last-of-type(n)</span>  在父元素中的子元素中选择倒数的第<span class="selector-tag">n</span>个<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:only-child</span> ：在父元素中选择只有一个子元素，并且一定要是<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:last-child</span>  在父元素中选择的最后一个子元素，并且一定要是<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line">p:nth-child(n || even || odd)  在父元素中选择第n个p元素 || 偶数 || 基数</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:nth-last-child(n)</span>  在父元素中选择倒数的第<span class="selector-tag">n</span>个子元素，并且一定要是<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> 选择文本的根元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:empty</span>  选择没有子元素的<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:enable</span>  选择每个未禁用的<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:disable</span>  选择每个被禁用的<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:checked</span>  选择每个被选中的<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:target</span>  选择当前活动的<span class="selector-tag">p</span>元素</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:not(p)</span> 选择不包括<span class="selector-tag">p</span>元素的 每一个元素</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">::selection</span>  用户选取的部分</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:focus</span> 获得焦点的元素器</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-line</span> 对<span class="selector-tag">p</span>元素的第一行文本进行格式化，只能用于块级元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:first-letter</span> 对<span class="selector-tag">p</span>元素的首字母设置特殊样式，只能用于块级元素</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> 在<span class="selector-tag">p</span>元素的内容前面插入新内容,</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:after</span>  在<span class="selector-tag">p</span>元素的后面插入新内容</span><br></pre></td></tr></table></figure>
+<h3 id="link-和-import-的区别"><a href="#link-和-import-的区别" class="headerlink" title="link 和 @import 的区别"></a>link 和 @import 的区别</h3><ol>
+<li>诞生的关系不同</li>
+</ol>
+<p><code>link</code> 是xhtml提供的标签，不仅可以加载css文件，还可以定义RSS,rel连接属性等等。 <code>@import</code> css提供的语法规则，只能导入样式表的作用，</p>
+<ol>
+<li>加载顺序不同</li>
+</ol>
+<p>加载页面时，<code>link</code>标签引入的css文件被同时加载. <code>@import</code>引入的css将在页面加载完成后执行加载。</p>
+<ol>
+<li>兼容性区别</li>
+</ol>
+<p><code>@import</code>是css2.1才有的语法，只能在ie5以上才能识别；<code>link</code>标签作为xhtml的元素，不存在兼容问题</p>
+<ol>
+<li>可操作Dom区别</li>
+</ol>
+<p>可以通过js 动态操作dom ， 插入<code>link</code> 标签来改变样式；由于dom方法是基于文档的，无法使用js操控<code>@import</code>的方式插入样式</p>
+<ol>
+<li><p>权重区别</p>
+<p>引入的样式权重大于<code>@import</code>引入的样式</p>
 </li>
-<li><p>第二次握手:Server收到数据包后由标志位SYN=1知道client请求建立连接，server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将数据包发送给client以确认连接请求，server进入SYN_RCVD状态。</p>
-</li>
-<li><p>第三次握手：client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则连接简历成功，Client和server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</p>
-</li>
-</ul>
-<p><code>TCP的四次挥手过程</code></p>
-<p><strong>图解：</strong></p>
-<p><img src="http://blog.chinaunix.net/attachment/201304/9/22312037_1365503104wDR0.png" alt=""></p>
+</ol>
+<p>CSS 权重优先级顺序简单表示为：</p>
+<p><code>!important</code> &gt; <code>行内样式</code> &gt; <code>ID</code> &gt; <code>类、伪类、属性</code> &gt; <code>标签名</code> &gt; <code>继承</code> &gt; <code>通配符</code></p>
+<p>最大   &gt;   1000   &gt;    100    &gt;     10    &gt;     1     &gt;     0</p>
+<p><code>@import</code> 的性能优于<code>link</code>,因为<code>@import</code>在页面加载完后才执行，所以在页面加载的同时不会去并行加载这个css文件，适合加载未来需要的文件。</p>
+<p><code>link</code> 在页面加载的同时就会同时加载，浏览器对并行下载有限制，适合 马上就需要加载的文件，并且要放置页面头部。</p>
+<h3 id="display-float-position-之间的关系"><a href="#display-float-position-之间的关系" class="headerlink" title="display , float , position 之间的关系"></a><code>display</code> , <code>float</code> , <code>position</code> 之间的关系</h3><p>当display：none的时候，就会忽略掉float和position的值，因为此时元素已经消失在渲染树中，元素不产生框</p>
+<p>否则，当position为absolute或fixed的时候，元素就是绝对定位，此时float的值为none。</p>
+<p>否则，当float不是none的时候，此时元素是浮动元素。</p>
+<p>否则，如果元素是根元素，，其它情况下display的值为指定值。</p>
+<p>总结来说，绝对定位，浮动，根元素都需要调整display</p>
+<p>而且，当元素设置了position：absolute或fixed，，或float不为none的时候，隐式的会将元素的display转为inline-block,即使指定了display除none之外的其它值的时候也是如此，而且也会将z-index增大为1.</p>
+<h3 id="如何创建块级格式化上下文-BFC有什么用？"><a href="#如何创建块级格式化上下文-BFC有什么用？" class="headerlink" title="如何创建块级格式化上下文,BFC有什么用？"></a>如何创建块级格式化上下文,BFC有什么用？</h3><p>如果创建：</p>
 <ul>
-<li><p>第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Cient进入FIN_WAIT_1</p>
+<li><p>根元素</p>
 </li>
-<li><p>第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态</p>
+<li><p>浮动元素 （float不为<code>none</code>）</p>
 </li>
-<li><p>第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态</p>
+<li><p>绝对定位元素 （position取值为<code>absolute</code>或<code>fixed</code>）</p>
 </li>
-<li><p>第四次挥手：Client收到FIN后,Client进入TIME_WAIT 状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</p>
+<li><p>元素display取值为<code>inline-block</code>,<code>inline-flex</code>,<code>flex</code>,<code>table-caption</code>,<code>table-cell</code>之一</p>
+</li>
+<li><p>overflow 除<code>visible</code>以外的元素</p>
 </li>
 </ul>
-<p>详细参考：<a href="https://segmentfault.com/a/1190000006879700，" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006879700，</a><br><a href="https://www.cnblogs.com/chengyunshen/p/7196348.html，" target="_blank" rel="noopener">https://www.cnblogs.com/chengyunshen/p/7196348.html，</a><br><a href="https://www.cnblogs.com/xsilence/p/6034361.html" target="_blank" rel="noopener">https://www.cnblogs.com/xsilence/p/6034361.html</a>,<br><a href="https://blog.csdn.net/sssnmnmjmf/article/details/68486261" target="_blank" rel="noopener">https://blog.csdn.net/sssnmnmjmf/article/details/68486261</a></p>
+<p>作用：</p>
+<ul>
+<li><p>可以包含浮动元素</p>
+</li>
+<li><p>不被浮动元素覆盖</p>
+</li>
+<li><p>阻止父子元素<code>margin</code>值的折叠</p>
+</li>
+</ul>
+<h3 id="css的盒子模型"><a href="#css的盒子模型" class="headerlink" title="css的盒子模型"></a>css的盒子模型</h3><p>有两种盒子模型，<code>IE盒子模型</code> ， <code>W3C盒子模型</code>.</p>
+<p>盒子模型： <code>content</code>内容 ， <code>padding</code>内边距 ， <code>margin</code>外边距 ， <code>border</code>边框   组成</p>
+<p>区别在于 ： IE盒子模型： 高 或 宽 = content + padding + border</p>
+<h3 id="去除inline-block元素间的缝隙"><a href="#去除inline-block元素间的缝隙" class="headerlink" title="去除inline-block元素间的缝隙"></a>去除inline-block元素间的缝隙</h3><p>inline-block水平呈现的元素间，换行显示或空格分隔的情况下会有间距（html中元素间空格，回车，html注释都会造成缝隙）</p>
+<ul>
+<li><p>使用margin负值，不过对于12像素大小的上下文，Arial字体的margin负值为-3像素，Tahoma和Verdana就是-4像素，而Geneva为-6像素</p>
+</li>
+<li><p>使用无闭合标签，（但是为了兼容ie6/7，最后一个列表的结束标签需要加上）</p>
+</li>
+<li><p>font-size:0</p>
+</li>
+<li><p>letter-spacing为负值，但是有些有浏览器最小间距1像素，在小就会还原了</p>
+</li>
+<li><p>word-spacing为负值</p>
+</li>
+<li><p>移除空格</p>
+</li>
+</ul>
+<h3 id="png，gif，jpg的区别及如何选"><a href="#png，gif，jpg的区别及如何选" class="headerlink" title="png，gif，jpg的区别及如何选"></a>png，gif，jpg的区别及如何选</h3><p><code>gif</code></p>
+<ul>
+<li><p>8位像素，256色</p>
+</li>
+<li><p>无损压缩</p>
+</li>
+<li><p>支持简单动画</p>
+</li>
+<li><p>支持boolean透明</p>
+</li>
+<li><p>适合简单动画</p>
+</li>
+</ul>
+<p><code>jpeg</code></p>
+<ul>
+<li><p>颜色限于256</p>
+</li>
+<li><p>有损压缩</p>
+</li>
+<li><p>可控制压缩质量</p>
+</li>
+<li><p>不支持透明</p>
+</li>
+<li><p>适合照片</p>
+</li>
+</ul>
+<p><code>png</code></p>
+<ul>
+<li><p>有png8和truecolor png</p>
+</li>
+<li><p>png8类似gif颜色上限256，文件小，支持alpha透明度，无动画</p>
+</li>
+<li><p>适合图标，背景，按钮</p>
+</li>
+</ul>
+<p>参考文献：<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/</a><br>参考文献：<a href="https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&amp;isappinstalled=0" target="_blank" rel="noopener">https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&amp;isappinstalled=0</a></p>
 
       
 
