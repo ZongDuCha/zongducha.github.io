@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>js复习手记四 | Blog</title>
+  <title>Archives: 2018/4 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。">
-<meta name="keywords" content="主页">
-<meta property="og:type" content="article">
-<meta property="og:title" content="js复习手记四">
-<meta property="og:url" content="http://yoursite.com/2018/02/04/js复习手记四/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Blog">
+<meta property="og:url" content="http://yoursite.com/archives/2018/04/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。">
-<meta property="og:updated_time" content="2018-04-19T08:11:11.563Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js复习手记四">
-<meta name="twitter:description" content="闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就是在提供了一个在外部访问另一个函数内部局部变量的方式。">
+<meta name="twitter:title" content="Blog">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
   
@@ -153,250 +148,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-js复习手记四" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      js复习手记四
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/04/19/js复习手记六/" class="archive-article-date">
+  	<time datetime="2018-04-19T10:40:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-19</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/04/19/js复习手记六/">js复习手记六</a>
     </h1>
   
 
-        
-        <a href="/2018/02/04/js复习手记四/" class="archive-article-date">
-  	<time datetime="2018-02-04T07:56:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="闭包-会持有父方法的局部变量并且不会随着父方法的销毁而销毁-闭包就"><a href="#闭包-会持有父方法的局部变量并且不会随着父方法的销毁而销毁-闭包就" class="headerlink" title="闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就"></a>闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就</h3><p>是在提供了一个在外部访问另一个函数内部局部变量的方式。<br><a id="more"></a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不使用闭包</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cont = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> cont += <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">add()</span><br><span class="line">add()</span><br><span class="line">add()</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 闭包</span></span><br><span class="line"><span class="keyword">var</span> tin;</span><br><span class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cont = <span class="number">0</span>;</span><br><span class="line">    tin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> cont += <span class="number">1</span>;&#125;;</span><br><span class="line">    <span class="keyword">return</span> tin</span><br><span class="line">&#125;();</span><br><span class="line"></span><br><span class="line">add()</span><br><span class="line">add()</span><br><span class="line">add()</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<h3 id="Element-matches-如果元素包含指定的选择器字符串，存在返回true，"><a href="#Element-matches-如果元素包含指定的选择器字符串，存在返回true，" class="headerlink" title="Element.matches() 如果元素包含指定的选择器字符串，存在返回true，"></a>Element.matches() 如果元素包含指定的选择器字符串，存在返回true，</h3><p>不存在则返回false</p>
-<h4 id="目前在非标准名称-matchesSelector-实现了这个方法，并且不同浏览"><a href="#目前在非标准名称-matchesSelector-实现了这个方法，并且不同浏览" class="headerlink" title="目前在非标准名称 matchesSelector() 实现了这个方法，并且不同浏览"></a>目前在非标准名称 <code>matchesSelector()</code> 实现了这个方法，并且不同浏览</h4><p>器使用前需要前缀。</p>
-<ul>
-<li>el.matchesSelector( DOMElement element, String selector )</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"main"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"><span class="comment">// chrome 下</span></span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.querySelector(<span class="string">'.main'</span>)</span><br><span class="line"><span class="keyword">var</span> ifAtt = body.webkitMatchesSelector(<span class="string">'.main'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(ifAtt)</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>为了方便兼容IE8+既低版本的浏览器使用，可以重写matchesSelector方法</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!Element.prototype.matchesSelector) &#123;</span><br><span class="line">    Element.prototype.matchesSelector = </span><br><span class="line">    Element.prototype.matchesSelector || </span><br><span class="line">    Element.prototype.mozMatchesSelector ||</span><br><span class="line">    Element.prototype.msMatchesSelector || </span><br><span class="line">    Element.prototype.oMatchesSelector || </span><br><span class="line">    Element.prototype.webkitMatchesSelector ||</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> matches = (<span class="keyword">this</span>.document || <span class="keyword">this</span>.ownerDocument).querySelectorAll</span><br><span class="line"></span><br><span class="line">(s),</span><br><span class="line">            i = matches.length;</span><br><span class="line">            <span class="keyword">while</span> (--i &gt;= <span class="number">0</span> &amp;&amp; matches.item(i) !== <span class="keyword">this</span>) &#123;&#125;</span><br><span class="line">            <span class="keyword">return</span> !!i;</span><br><span class="line">     &#125;</span><br><span class="line">    )();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> body = <span class="built_in">document</span>.querySelector(<span class="string">'.main'</span>)</span><br><span class="line"><span class="keyword">var</span> ifAtt = body.matchesSelector(<span class="string">'.main'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(ifAtt)</span><br></pre></td></tr></table></figure>
-<p>需要注意的是：如果指定的选择器是数字开头的则会报错，如</p>
-<p>class=”1mian”,id=”1main”</p>
-<p>参考文献：<a href="https://www.lyblog.net/detail/601.html" target="_blank" rel="noopener">https://www.lyblog.net/detail/601.html</a>  ,   </p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Element/matches</a></p>
-<h3 id="getComputedStyle和currentStyle"><a href="#getComputedStyle和currentStyle" class="headerlink" title="getComputedStyle和currentStyle"></a>getComputedStyle和currentStyle</h3><p>element.style 获取的是内联样式或设置样式 , 如果获取指定的属性名  style中</p>
-<p>不存在则返回空</p>
-<p>element.currentStyle 这是ie专有的属性，只在ie下支持，在获取未设置的属性</p>
-<p>值时,currentStyle会读取浏览器的默认值</p>
-<p>document.defaultView.getComputedStyle(element,null) ie6~ie8是不支持的，</p>
-<p>获取属性和currentStyle类似</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">"height:100px"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// js</span></span><br><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.querySelector(<span class="string">'div'</span>)</span><br><span class="line">div.style.height</span><br><span class="line"><span class="comment">// "100px"</span></span><br><span class="line">div.style.width</span><br><span class="line"><span class="comment">// ""</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">div.currentStyle[<span class="string">'height'</span>]</span><br><span class="line"><span class="comment">// "100px"</span></span><br><span class="line">div.currentStyle[<span class="string">'width'</span>]</span><br><span class="line"><span class="comment">// "0px"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.defaultView.getComputedStyle(div,<span class="literal">null</span>).height</span><br><span class="line"><span class="comment">// "100px"</span></span><br><span class="line"><span class="built_in">document</span>.defaultView.getComputedStyle(div,<span class="literal">null</span>).backgroundColor</span><br><span class="line"><span class="comment">// "rgba(0, 0, 0, 0)",js中属性名是需要驼峰写法</span></span><br><span class="line"><span class="built_in">document</span>.defaultView.getComputedStyle(div,<span class="literal">null</span>)[<span class="string">'background-color'</span>]</span><br><span class="line"><span class="comment">// "rgba(0, 0, 0, 0)"，数组中字符串可以不用驼峰写法</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 兼容写法</span></span><br><span class="line">Element.prototype.getComputedStyle = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> getComputedStyle(<span class="keyword">this</span>)[x] || <span class="keyword">this</span>.currentStyle[x] || <span class="keyword">this</span>.style[x]</span><br><span class="line">&#125;</span><br><span class="line">div.getComputedStyle(<span class="string">'height'</span>)</span><br><span class="line"><span class="comment">// "100px"</span></span><br></pre></td></tr></table></figure>
-<h3 id="CSS-实现水平垂直居中"><a href="#CSS-实现水平垂直居中" class="headerlink" title="CSS 实现水平垂直居中"></a>CSS 实现水平垂直居中</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"slide"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="1-position-auto"><a href="#1-position-auto" class="headerlink" title="1.position+auto"></a>1.position+auto</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;<span class="attribute">background</span>:<span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;<span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">position</span>:absolute;<span class="attribute">top</span>:<span class="number">0</span>;<span class="attribute">left</span>:<span class="number">0</span>;<span class="attribute">right</span>:<span class="number">0</span>;<span class="attribute">bottom</span>:<span class="number">0</span>;<span class="attribute">margin</span>:auto;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个居中方案比较简单常用，IE8及以上支持<br>但是有一点需要注意：宽度和高度不能是auto，否则高宽会继承 限制他的元素（relative）;下一个方案解决这问题：</p>
-<h5 id="2-table-cell"><a href="#2-table-cell" class="headerlink" title="2. table-cell"></a>2. table-cell</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">display</span>:table-cell;<span class="comment">/* 让 vertical-align: middle; 生效 */</span></span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#ddd</span>;<span class="attribute">vertical-align</span>: middle;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:inline-block;</span><br><span class="line">    <span class="attribute">vertical-align</span>:middle;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个方案可以解决上一个需要设置高宽的问题，IE8及以上支持。这里除了给父父元素一个vertical-align: middle;之外，我们还需要给需要水平垂直居中的元素也添加vertical-align: middle;属性。如果不添加，那么在垂直方向上会有几个像素的误差。</p>
-<h5 id="3-position-margin-absolute-translate"><a href="#3-position-margin-absolute-translate" class="headerlink" title="3.position+margin/absolute/translate"></a>3.position+margin/absolute/translate</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">// 形式一</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;<span class="attribute">background</span>:<span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>:-<span class="number">25px</span>;<span class="attribute">margin-left</span>:-<span class="number">25px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 形式二</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;<span class="attribute">background</span>:<span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">25px</span>;<span class="attribute">left</span>:<span class="number">25px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 形式三</span><br><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">position</span>:relative;<span class="attribute">background</span>:<span class="number">#ddd</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%,-50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>前两个都差不多，需要自己计算数值并且需要设置宽高，IE5及以上支持推荐使用第三个方案，利用translate按自身的高宽百分比移动，达到居中效果,IE9及以上支持</p>
-<h5 id="4-Flex"><a href="#4-Flex" class="headerlink" title="4.Flex"></a>4.Flex</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#ddd</span>;<span class="attribute">display</span>:flex;</span><br><span class="line">    <span class="attribute">align-items</span>: center; <span class="comment">/* 垂直居中 */</span></span><br><span class="line">    <span class="attribute">justify-content</span>: center;<span class="comment">/* 水平居中 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不需要设置元素高宽，且简单，就可以达到居中效果，但是….IE10及以上才支持。移动端兼容良好，推荐在移动端使用</p>
-<h5 id="5-Flex-margin"><a href="#5-Flex-margin" class="headerlink" title="5.Flex+margin"></a>5.Flex+margin</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">100px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#ddd</span>;<span class="attribute">display</span>:flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.slide</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ff0000</span>;<span class="attribute">margin</span>:auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>兼容性：IE10及以上 ,这种方法跟第4种方法比较起来代码也更加简洁。</p>
-<h5 id="网上终极法"><a href="#网上终极法" class="headerlink" title="网上终极法"></a>网上终极法</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.demo-wrap</span>&#123;<span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#eee</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.demo-center</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: table-cell;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">   *position: absolute;</span><br><span class="line">   *<span class="selector-tag">top</span>: 50%;</span><br><span class="line">   *<span class="selector-tag">left</span>: 50%;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span>&#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">   *position:relative;</span><br><span class="line">   *<span class="selector-tag">top</span>: <span class="selector-tag">-50</span>%;</span><br><span class="line">   *<span class="selector-tag">left</span>: <span class="selector-tag">-50</span>%;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>参考：<a href="https://juejin.im/post/58f818bbb123db006233ab2a" target="_blank" rel="noopener">https://juejin.im/post/58f818bbb123db006233ab2a</a><br><a href="https://segmentfault.com/a/1190000011942746?_ea=2818653" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011942746?_ea=2818653</a></p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">主页</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/04/js复习手记四/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/02/05/function和箭头函数的区别/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          function和箭头函数的区别
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/01/25/web性能优化（持续更新）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">web性能优化（持续更新）</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="js复习手记四" data-title="js复习手记四" data-url="http://yoursite.com/2018/02/04/js复习手记四/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://yoursite.com/2018/02/04/js复习手记四/", 
-    sourceId: "js复习手记四",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="js复习手记四" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "true",
-        conf: "true"
-    });
-</script>
-</script>
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -419,8 +213,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

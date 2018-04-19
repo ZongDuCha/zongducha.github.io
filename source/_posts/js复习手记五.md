@@ -167,7 +167,7 @@ inline-block水平呈现的元素间，换行显示或空格分隔的情况下�
 - 移除空格
 
 
-### png，gif，jpg的区别及如何选
+### png，gif，jpeg的区别及如何选
 
 `gif`
 
@@ -181,6 +181,8 @@ inline-block水平呈现的元素间，换行显示或空格分隔的情况下�
 
 - 适合简单动画
 
+- 体积小
+
 
 `jpeg`
 
@@ -192,18 +194,36 @@ inline-block水平呈现的元素间，换行显示或空格分隔的情况下�
 
 - 不支持透明
 
-- 适合照片
+- 适合颜色丰富的照片
+
+- 体积小
+
+- 打开速度快
 
 
 `png`
 
 - 有png8和truecolor png
 
-- png8类似gif颜色上限256，文件小，支持alpha透明度，无动画
+- png8类似gif颜色上限256，体积大，支持alpha透明度，无动画
 
 - 适合图标，背景，按钮
 
+- 压缩效率比bmp高，比jpeg低
+
+- 无损压缩
 
 
+`jpeg / png / gif`
+
+- jpeg属于有损压缩，每次保存都会产生数据损失，不适合多次编辑保存，压缩过高图像会失真，模糊
+
+- png一般体积比同尺寸90%压缩率的jpeg大的多，但是人眼看起来差不多，适合小图标，透明背景，在IE6不支持，但是可以用js的hack
+
+- gif 色域不广，只有256中颜色，不适合做太复杂的动画，正在被goole的webm格式取代
+
+
+
+参考文献：https://www.zhihu.com/question/20028452
 参考文献：http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/
 参考文献：https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&isappinstalled=0

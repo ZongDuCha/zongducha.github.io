@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/03/31/js复习手记五/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="css3新增的伪类">
-<meta property="og:updated_time" content="2018-04-19T05:34:23.162Z">
+<meta property="og:updated_time" content="2018-04-19T09:09:52.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js复习手记五">
 <meta name="twitter:description" content="css3新增的伪类">
@@ -247,7 +247,7 @@
 <li><p>移除空格</p>
 </li>
 </ul>
-<h3 id="png，gif，jpg的区别及如何选"><a href="#png，gif，jpg的区别及如何选" class="headerlink" title="png，gif，jpg的区别及如何选"></a>png，gif，jpg的区别及如何选</h3><p><code>gif</code></p>
+<h3 id="png，gif，jpeg的区别及如何选"><a href="#png，gif，jpeg的区别及如何选" class="headerlink" title="png，gif，jpeg的区别及如何选"></a>png，gif，jpeg的区别及如何选</h3><p><code>gif</code></p>
 <ul>
 <li><p>8位像素，256色</p>
 </li>
@@ -258,6 +258,8 @@
 <li><p>支持boolean透明</p>
 </li>
 <li><p>适合简单动画</p>
+</li>
+<li><p>体积小</p>
 </li>
 </ul>
 <p><code>jpeg</code></p>
@@ -270,19 +272,36 @@
 </li>
 <li><p>不支持透明</p>
 </li>
-<li><p>适合照片</p>
+<li><p>适合颜色丰富的照片</p>
+</li>
+<li><p>体积小</p>
+</li>
+<li><p>打开速度快</p>
 </li>
 </ul>
 <p><code>png</code></p>
 <ul>
 <li><p>有png8和truecolor png</p>
 </li>
-<li><p>png8类似gif颜色上限256，文件小，支持alpha透明度，无动画</p>
+<li><p>png8类似gif颜色上限256，体积大，支持alpha透明度，无动画</p>
 </li>
 <li><p>适合图标，背景，按钮</p>
 </li>
+<li><p>压缩效率比bmp高，比jpeg低</p>
+</li>
+<li><p>无损压缩</p>
+</li>
 </ul>
-<p>参考文献：<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/</a><br>参考文献：<a href="https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&amp;isappinstalled=0" target="_blank" rel="noopener">https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&amp;isappinstalled=0</a></p>
+<p><code>jpeg / png / gif</code></p>
+<ul>
+<li><p>jpeg属于有损压缩，每次保存都会产生数据损失，不适合多次编辑保存，压缩过高图像会失真，模糊</p>
+</li>
+<li><p>png一般体积比同尺寸90%压缩率的jpeg大的多，但是人眼看起来差不多，适合小图标，透明背景，在IE6不支持，但是可以用js的hack</p>
+</li>
+<li><p>gif 色域不广，只有256中颜色，不适合做太复杂的动画，正在被goole的webm格式取代</p>
+</li>
+</ul>
+<p>参考文献：<a href="https://www.zhihu.com/question/20028452" target="_blank" rel="noopener">https://www.zhihu.com/question/20028452</a><br>参考文献：<a href="http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" target="_blank" rel="noopener">http://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/</a><br>参考文献：<a href="https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&amp;isappinstalled=0" target="_blank" rel="noopener">https://juejin.im/entry/58c60601da2f605dc5a90282?from=groupmessage&amp;isappinstalled=0</a></p>
 
       
 
@@ -387,9 +406,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/04/19/js复习手记六/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js复习手记六
+        
+      </div>
+    </a>
   
-    <a href="/2018/02/05/function和箭头函数的区别/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">function和箭头函数的区别</div>
+  
+    <a href="/2018/03/31/从输入url到页面加载时发生了什么？/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">从输入url到页面加载时发生了什么？</div>
       <i class="icon-circle-right"></i>
     </a>
   
