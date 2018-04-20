@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>js复习手记六 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="闭包的理解闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。 闭包的特性： 函数中嵌套函数  闭包函数可以访问外层作用域的参数和变量 （沿着作用域链寻找）  闭包内的参数和变量不会被垃圾回收机制回收  封装变量">
+  <meta name="description" content="js作用域链">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js复习手记六">
 <meta property="og:url" content="http://yoursite.com/2018/04/19/js复习手记六/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="闭包的理解闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。 闭包的特性： 函数中嵌套函数  闭包函数可以访问外层作用域的参数和变量 （沿着作用域链寻找）  闭包内的参数和变量不会被垃圾回收机制回收  封装变量">
+<meta property="og:description" content="js作用域链">
 <meta property="og:image" content="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635">
-<meta property="og:updated_time" content="2018-04-19T13:33:10.208Z">
+<meta property="og:updated_time" content="2018-04-20T11:32:02.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js复习手记六">
-<meta name="twitter:description" content="闭包的理解闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。 闭包的特性： 函数中嵌套函数  闭包函数可以访问外层作用域的参数和变量 （沿着作用域链寻找）  闭包内的参数和变量不会被垃圾回收机制回收  封装变量">
+<meta name="twitter:description" content="js作用域链">
 <meta name="twitter:image" content="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
@@ -174,7 +174,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。</p>
+        <h2 id="js作用域链"><a href="#js作用域链" class="headerlink" title="js作用域链"></a>js作用域链</h2><a id="more"></a>
+<p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
+<p>当js代码执行的时候，都会生成一个作用域链。作用域链的作用是保证有权访问执行环境里的变量和函数是有序访问。作用域链的变量只能在包含他的函数中向上访问，这样，一直延续到全局执行环境为止（window对象），整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表</p>
+<p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
+<h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。</p>
 <h5 id="闭包的特性："><a href="#闭包的特性：" class="headerlink" title="闭包的特性："></a>闭包的特性：</h5><ul>
 <li><p>函数中嵌套函数</p>
 </li>
@@ -207,11 +211,6 @@
 <li><p>所以并不是用var声明的变量作用范围起止于花括号之间，javascript并没有块级作用域</p>
 </li>
 </ul>
-<h2 id="js作用域链"><a href="#js作用域链" class="headerlink" title="js作用域链"></a>js作用域链</h2><p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
-<p>当代码在一个环境中执行时，都会生成一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
-<p>整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表。作用域链的最前端，始终是当前正在执行的代码所在环境的变量对象。</p>
-<p>作用域链中的下一个变量对象来自该函数的包含环境，而再下一个变量对象来自再下一个包含环境。这样，一直延续到全局执行环境，全局执行环境的Variable Object始终是作用域链中的最后一个对象。</p>
-<p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
 
       
 
@@ -479,11 +478,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">复习</a>
+                <a href="javascript:void(0)" class="js-tag color5">2017</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">2017</a>
+                <a href="javascript:void(0)" class="js-tag color3">复习</a>
               </li>
             
             <div class="clearfix"></div>
