@@ -8,18 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>js复习手记六 | Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="闭包的理解">
+  <meta name="description" content="js作用域链">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js复习手记六">
 <meta property="og:url" content="http://yoursite.com/2018/04/19/js复习手记六/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="闭包的理解">
+<meta property="og:description" content="js作用域链">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635">
-<meta property="og:updated_time" content="2018-04-19T13:57:07.045Z">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524246978601&di=d940f06269611579008d091b87b1d945&imgtype=0&src=http%3A%2F%2Fs15.sinaimg.cn%2Fmw690%2F0066XBEogy6SH2GHjdQ6e%26690">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524246781051&di=de48a70f756cd6ac7fb1e93d86dda1c2&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D4057629261%2C3288707102%26fm%3D214%26gp%3D0.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524250701715&di=33f07910a1e57b73751e36e23e8f04a9&imgtype=0&src=http%3A%2F%2Fs16.sinaimg.cn%2Fmw690%2F002GzjQMgy6ZIHw18gT4f%26690">
+<meta property="og:updated_time" content="2018-04-20T16:11:48.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js复习手记六">
-<meta name="twitter:description" content="闭包的理解">
+<meta name="twitter:description" content="js作用域链">
 <meta name="twitter:image" content="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635">
   
     <link rel="alternative" href="/atom.xml" title="Blog" type="application/atom+xml">
@@ -175,8 +178,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><a id="more"></a>
-<p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。</p>
+        <h2 id="js作用域链"><a href="#js作用域链" class="headerlink" title="js作用域链"></a>js作用域链</h2><a id="more"></a>
+<p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
+<p>当js代码执行的时候，都会生成一个作用域链。作用域链的作用是保证有权访问执行环境里的变量和函数是有序访问。访问作用域链的变量只能在包含他的函数中向上访问，直到全局执行环境为止（window对象），整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表</p>
+<p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
+<h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存在内存中，简单来说闭包就是外部想访问一个函数内部参数或变量的桥梁，并且访问结束后将引用的变量保存在内存中供下次使用。</p>
 <h5 id="闭包的特性："><a href="#闭包的特性：" class="headerlink" title="闭包的特性："></a>闭包的特性：</h5><ul>
 <li><p>函数中嵌套函数</p>
 </li>
@@ -188,15 +194,18 @@
 </li>
 </ul>
 <h5 id="闭包的优缺"><a href="#闭包的优缺" class="headerlink" title="闭包的优缺"></a>闭包的优缺</h5><ul>
-<li><p>创建是为了访问私有方法和变量。可以避免全局变量污染</p>
+<li><p>创建是为了封装和缓存变量，以供外部使用。可以避免全局变量污染</p>
 </li>
 <li><p>但是闭包会保存在内存中，会增大内存的占有率，使用不当容易造成内存泄漏，</p>
 </li>
 <li><p>在js中，函数就是闭包，只有函数才能产生作用域的概念</p>
 </li>
+<li><p>在退出函数之前，将不使用的局部变量全部删除</p>
+</li>
 <li><p>闭包和循环如果同时使用的话有时会有问题，因为闭包内的变量是保存变化的，如果创建闭包之后再使用函数的话，循环里的 i 可能会一直是最后一个值（比如最大值）。</p>
 </li>
 </ul>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1524246978601&amp;di=d940f06269611579008d091b87b1d945&amp;imgtype=0&amp;src=http%3A%2F%2Fs15.sinaimg.cn%2Fmw690%2F0066XBEogy6SH2GHjdQ6e%26690" alt="js闭包图解"></p>
 <h2 id="js作用域"><a href="#js作用域" class="headerlink" title="js作用域"></a>js作用域</h2><p><code>全局作用域</code>:</p>
 <p>在js中，最外层定义的变量拥有全局作用域，对任何内容来说，都是可以访问的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">'js'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">b(); <span class="comment">// js</span></span><br></pre></td></tr></table></figure>
@@ -209,11 +218,24 @@
 <li><p>所以并不是用var声明的变量作用范围起止于花括号之间，javascript并没有块级作用域</p>
 </li>
 </ul>
-<h2 id="js作用域链"><a href="#js作用域链" class="headerlink" title="js作用域链"></a>js作用域链</h2><p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
-<p>当代码在一个环境中执行时，都会生成一个作用域链。作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。</p>
-<p>整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表。作用域链的最前端，始终是当前正在执行的代码所在环境的变量对象。</p>
-<p>作用域链中的下一个变量对象来自该函数的包含环境，而再下一个变量对象来自再下一个包含环境。这样，一直延续到全局执行环境，全局执行环境的Variable Object始终是作用域链中的最后一个对象。</p>
-<p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
+<h2 id="javascript原型链（prototype）"><a href="#javascript原型链（prototype）" class="headerlink" title="javascript原型链（prototype）"></a>javascript原型链（prototype）</h2><p>每一个对象内部都有一个prototype属性，当查找一个对象属性的时候，如果这个属性不存在这个对象中，就会通过这个prototype去查找这个属性，这个prototype又会有自己protoype属性，这样一层一层查找，直到Object内建对象中，如果Object中也不存在，就会返回undefined。</p>
+<ul>
+<li>javascript对象赋值给新的变量的时候，实际上只是通过引用来传递的，新的变量中没有属于自己的原型副本。当我们修改原型的时候，与之相关的对象也会跟随改变，因为他们都指向内存的一个地址。</li>
+</ul>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1524246781051&amp;di=de48a70f756cd6ac7fb1e93d86dda1c2&amp;imgtype=jpg&amp;src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D4057629261%2C3288707102%26fm%3D214%26gp%3D0.jpg" alt="原型图解"></p>
+<h2 id="事件代理"><a href="#事件代理" class="headerlink" title="事件代理"></a>事件代理</h2><p>事件代理又称事件委托，是把原本需要绑定在元素的事件委托给父元素或包含他的其他元素，让其委托的元素监听并处理事件。</p>
+<ul>
+<li><p>事件代理的原理是利用dom元素的时间冒泡机制</p>
+</li>
+<li><p>使用事件代理能够提高性能</p>
+</li>
+<li><p>大量节省内存，减少事件注册，（比如在table中代理所有tr元素的click事件）</p>
+</li>
+<li><p>一般新增元素事件是没有添加进去的，这时就可以在父元素上用事件代理能很好解决这个问题</p>
+</li>
+</ul>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1524250701715&amp;di=33f07910a1e57b73751e36e23e8f04a9&amp;imgtype=0&amp;src=http%3A%2F%2Fs16.sinaimg.cn%2Fmw690%2F002GzjQMgy6ZIHw18gT4f%26690" alt=""></p>
+<p>参考文献：<a href="https://www.cnblogs.com/liugang-vip/p/5616484.html" target="_blank" rel="noopener">https://www.cnblogs.com/liugang-vip/p/5616484.html</a></p>
 
       
 
