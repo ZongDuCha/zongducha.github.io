@@ -8,9 +8,9 @@ tags:
 
 <!-- more -->
 
-作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。
-
 当js代码执行的时候，都会生成一个作用域链。作用域链的作用是保证有权访问执行环境里的变量和函数是有序访问。访问作用域链的变量只能在包含他的函数中向上访问，直到全局执行环境为止（window对象），整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表
+
+作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。
 
 ![123](http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635)
 
@@ -87,7 +87,7 @@ console.log(b) // js
 
 每一个对象内部都有一个prototype属性，当查找一个对象属性的时候，如果这个属性不存在这个对象中，就会通过这个prototype去查找这个属性，这个prototype又会有自己protoype属性，这样一层一层查找，直到Object内建对象中，如果Object中也不存在，就会返回undefined。
 
-- javascript对象赋值给新的变量的时候，实际上只是通过引用来传递的，新的变量中没有属于自己的原型副本。当我们修改原型的时候，与之相关的对象也会跟随改变，因为他们都指向内存的一个地址。
+- javascript对象赋值给新的变量的时候，实际上只是通过引用来传递的，新的变量中没有属于自己的原型副本。当我们修改原型的时候，与之相关的对象也会跟随改变，因为他们都指向同一个内存地址。
 
 ![原型图解](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524246781051&di=de48a70f756cd6ac7fb1e93d86dda1c2&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D4057629261%2C3288707102%26fm%3D214%26gp%3D0.jpg)
 
@@ -104,7 +104,117 @@ console.log(b) // js
 
 - 一般新增元素事件是没有添加进去的，这时就可以在父元素上用事件代理能很好解决这个问题
 
-![](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524250701715&di=33f07910a1e57b73751e36e23e8f04a9&imgtype=0&src=http%3A%2F%2Fs16.sinaimg.cn%2Fmw690%2F002GzjQMgy6ZIHw18gT4f%26690)
+
+## this的理解
+
+this的指向在函数定义的时候是不确定的，只有在执行函数的时候才能确定this指向谁，实际上this的最终指向的是哪个调用他的对象内
+
+```js
+function a(){
+    this.name = 'js'
+    console.log(this.name,this) // undefined , window
+}
+a() // 相当于是window.a()
 
 
+
+var o = {
+    name: 'js',
+    fn: function (){
+        console.log(this.name,this) // 'js' , fn
+    }
+}
+o.fn() // 相当于window.o.fn()
+```
+o.fn()是通过o调用的，this自然指向了o
+
+1. 如果一个函数中有this，但是它没有被上一级的对象所调用，那么this指向的就是window，严格模式除外。
+
+2. 如果一个函数中有this，这个函数有被上一级的对象所调用，那么this指向的就是上一级的对象。尽管这个函数是被最外层的对象所调用，this指向的也只是它上一级的对象
+
+```js 
+var o = {
+    a:10,
+    b:{
+        a:12,
+        fn:function(){
+            console.log(this.a); // 12
+        }
+    }
+}
+o.b.fn();
+```
+
+尽管被多个对象调用，但是this依然指向他上一级对象
+
+
+### 当this遇到return时的问题
+
+如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this还是指向函数的实例。
+
+```js 
+function fn()  
+{  
+    this.name = 'js';  
+    return {};  
+}
+var a = new fn;  
+console.log(a.name); //undefined
+// 返回值返回的是对象
+
+
+function fn()  
+{  
+    this.name = 'js';  
+    return function(){};
+}
+var a = new fn;  
+console.log(a.name); //undefined
+// 返回值返回的是匿名函数
+
+
+function fn()  
+{  
+    this.name = 'js';  
+    return undefined;
+}
+var a = new fn;  
+console.log(a.name); //js
+// 返回值返回的是不是对象
+
+
+
+function fn()  
+{  
+    this.name = 'js';  
+    return undefined;
+}
+var a = new fn;  
+console.log(a); //fn {name: "js"}
+// 返回值返回的是不是对象
+```
+
+
+还有null比较特殊，虽然null也是对象，但是this指向的还是函数的实例
+
+```js
+function fn()  
+{  
+    this.name = 'js';  
+    return null;
+}
+var a = new fn;  
+console.log(a.name); //js
+```
+
+
+总结：
+
+- 在严格模式下，默认的this不是window，而是undefined。在node中，是Global对象
+
+- new 会改变this的对象，就好像用了call或apply方法（但实际上可能并不是）
+
+
+参考文献：https://www.cnblogs.com/pssp/p/5216085.html
+参考文献：https://www.cnblogs.com/humin/p/4556820.html
 参考文献：https://www.cnblogs.com/liugang-vip/p/5616484.html

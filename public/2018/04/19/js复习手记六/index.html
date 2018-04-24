@@ -14,17 +14,10 @@
 <meta property="og:url" content="http://yoursite.com/2018/04/19/js复习手记六/index.html">
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="js作用域链">
-<<<<<<< HEAD
-<meta property="og:image" content="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635">
-<meta property="og:updated_time" content="2018-04-20T11:32:02.539Z">
-=======
-<meta property="og:locale" content="default">
 <meta property="og:image" content="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524246978601&di=d940f06269611579008d091b87b1d945&imgtype=0&src=http%3A%2F%2Fs15.sinaimg.cn%2Fmw690%2F0066XBEogy6SH2GHjdQ6e%26690">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524246781051&di=de48a70f756cd6ac7fb1e93d86dda1c2&imgtype=jpg&src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D4057629261%2C3288707102%26fm%3D214%26gp%3D0.jpg">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1524250701715&di=33f07910a1e57b73751e36e23e8f04a9&imgtype=0&src=http%3A%2F%2Fs16.sinaimg.cn%2Fmw690%2F002GzjQMgy6ZIHw18gT4f%26690">
-<meta property="og:updated_time" content="2018-04-20T16:11:48.420Z">
->>>>>>> 778a19ea99dae5acf0dfd83d0b6dc5f9ae508cc9
+<meta property="og:updated_time" content="2018-04-24T05:35:11.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js复习手记六">
 <meta name="twitter:description" content="js作用域链">
@@ -184,16 +177,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="js作用域链"><a href="#js作用域链" class="headerlink" title="js作用域链"></a>js作用域链</h2><a id="more"></a>
-<p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
-<<<<<<< HEAD
-<p>当js代码执行的时候，都会生成一个作用域链。作用域链的作用是保证有权访问执行环境里的变量和函数是有序访问。作用域链的变量只能在包含他的函数中向上访问，这样，一直延续到全局执行环境为止（window对象），整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表</p>
-<p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
-<h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建并返回另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存起来，说白了闭包就是外部想访问一个函数内部参数或变量的桥梁。</p>
-=======
 <p>当js代码执行的时候，都会生成一个作用域链。作用域链的作用是保证有权访问执行环境里的变量和函数是有序访问。访问作用域链的变量只能在包含他的函数中向上访问，直到全局执行环境为止（window对象），整个作用域链是由不同执行位置上的变量对象按照规则所构建一个链表</p>
+<p>作用域链就是在内部函数中，可以访问外部函数变量的这种机制，用链式查找决定那些数据能被内部函数访问。</p>
 <p><img src="http://files.jb51.net/file_images/article/201605/201655141623615.png?201645141635" alt="123"></p>
 <h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>闭包是指有权访问另一个函数的作用域中变量的函数，创建闭包最常见的方式就是在函数中创建另一个函数，通过创建的这个闭包函数访问外层的局部变量，利用闭包可以突破作用域链，将变量缓存在内存中，简单来说闭包就是外部想访问一个函数内部参数或变量的桥梁，并且访问结束后将引用的变量保存在内存中供下次使用。</p>
->>>>>>> 778a19ea99dae5acf0dfd83d0b6dc5f9ae508cc9
 <h5 id="闭包的特性："><a href="#闭包的特性：" class="headerlink" title="闭包的特性："></a>闭包的特性：</h5><ul>
 <li><p>函数中嵌套函数</p>
 </li>
@@ -229,14 +216,12 @@
 <li><p>所以并不是用var声明的变量作用范围起止于花括号之间，javascript并没有块级作用域</p>
 </li>
 </ul>
-<<<<<<< HEAD
-=======
 <h2 id="javascript原型链（prototype）"><a href="#javascript原型链（prototype）" class="headerlink" title="javascript原型链（prototype）"></a>javascript原型链（prototype）</h2><p>每一个对象内部都有一个prototype属性，当查找一个对象属性的时候，如果这个属性不存在这个对象中，就会通过这个prototype去查找这个属性，这个prototype又会有自己protoype属性，这样一层一层查找，直到Object内建对象中，如果Object中也不存在，就会返回undefined。</p>
 <ul>
-<li>javascript对象赋值给新的变量的时候，实际上只是通过引用来传递的，新的变量中没有属于自己的原型副本。当我们修改原型的时候，与之相关的对象也会跟随改变，因为他们都指向内存的一个地址。</li>
+<li>javascript对象赋值给新的变量的时候，实际上只是通过引用来传递的，新的变量中没有属于自己的原型副本。当我们修改原型的时候，与之相关的对象也会跟随改变，因为他们都指向同一个内存地址。</li>
 </ul>
 <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1524246781051&amp;di=de48a70f756cd6ac7fb1e93d86dda1c2&amp;imgtype=jpg&amp;src=http%3A%2F%2Fimg1.imgtn.bdimg.com%2Fit%2Fu%3D4057629261%2C3288707102%26fm%3D214%26gp%3D0.jpg" alt="原型图解"></p>
-<h2 id="事件代理"><a href="#事件代理" class="headerlink" title="事件代理"></a>事件代理</h2><p>事件代理又称事件委托，是把原本需要绑定在元素的事件委托给父元素或包含他的其他元素，让其委托的元素监听并处理事件。</p>
+<h2 id="事件代理"><a href="#事件代理" class="headerlink" title="事件代理"></a>事件代理</h2><p>事件代理又称事件委托，是把原本需要绑定在元素的事件委托给父元素或包含他的其他元素，让委托的元素监听并处理事件。</p>
 <ul>
 <li><p>事件代理的原理是利用dom元素的时间冒泡机制</p>
 </li>
@@ -247,9 +232,29 @@
 <li><p>一般新增元素事件是没有添加进去的，这时就可以在父元素上用事件代理能很好解决这个问题</p>
 </li>
 </ul>
-<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1524250701715&amp;di=33f07910a1e57b73751e36e23e8f04a9&amp;imgtype=0&amp;src=http%3A%2F%2Fs16.sinaimg.cn%2Fmw690%2F002GzjQMgy6ZIHw18gT4f%26690" alt=""></p>
-<p>参考文献：<a href="https://www.cnblogs.com/liugang-vip/p/5616484.html" target="_blank" rel="noopener">https://www.cnblogs.com/liugang-vip/p/5616484.html</a></p>
->>>>>>> 778a19ea99dae5acf0dfd83d0b6dc5f9ae508cc9
+<h2 id="this的理解"><a href="#this的理解" class="headerlink" title="this的理解"></a>this的理解</h2><p>this的指向在函数定义的时候是不确定的，只有在执行函数的时候才能确定this指向谁，实际上this的最终指向的是哪个调用他的对象内</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'js'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name,<span class="keyword">this</span>) <span class="comment">// undefined , window</span></span><br><span class="line">&#125;</span><br><span class="line">a() <span class="comment">// 相当于是window.a()</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    name: <span class="string">'js'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name,<span class="keyword">this</span>) <span class="comment">// 'js' , fn</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">o.fn() <span class="comment">// 相当于window.o.fn()</span></span><br></pre></td></tr></table></figure>
+<p>o.fn()是通过o调用的，this自然指向了o</p>
+<ol>
+<li><p>如果一个函数中有this，但是它没有被上一级的对象所调用，那么this指向的就是window，严格模式除外。</p>
+</li>
+<li><p>如果一个函数中有this，这个函数有被上一级的对象所调用，那么this指向的就是上一级的对象。尽管这个函数是被最外层的对象所调用，this指向的也只是它上一级的对象</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">    a:<span class="number">10</span>,</span><br><span class="line">    b:&#123;</span><br><span class="line">        a:<span class="number">12</span>,</span><br><span class="line">        fn:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); <span class="comment">// 12</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">o.b.fn();</span><br></pre></td></tr></table></figure>
+<p>尽管被多个对象调用，但是this依然指向他上一级对象</p>
+<h3 id="当this遇到return时的问题"><a href="#当this遇到return时的问题" class="headerlink" title="当this遇到return时的问题"></a>当this遇到return时的问题</h3><p>如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this还是指向函数的实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'js'</span>;  </span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">//undefined</span></span><br><span class="line"><span class="comment">// 返回值返回的是对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'js'</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">//undefined</span></span><br><span class="line"><span class="comment">// 返回值返回的是匿名函数</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'js'</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">//js</span></span><br><span class="line"><span class="comment">// 返回值返回的是不是对象</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'js'</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="built_in">console</span>.log(a); <span class="comment">//fn &#123;name: "js"&#125;</span></span><br><span class="line"><span class="comment">// 返回值返回的是不是对象</span></span><br></pre></td></tr></table></figure>
+<p>还有null比较特殊，虽然null也是对象，但是this指向的还是函数的实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">'js'</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> fn;  </span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">//js</span></span><br></pre></td></tr></table></figure>
+<p>总结：</p>
+<ul>
+<li><p>在严格模式下，默认的this不是window，而是undefined。在node中，是Global对象</p>
+</li>
+<li><p>new 会改变this的对象，就好像用了call或apply方法（但实际上可能并不是）</p>
+</li>
+</ul>
+<p>参考文献：<a href="https://www.cnblogs.com/humin/p/4556820.html" target="_blank" rel="noopener">https://www.cnblogs.com/humin/p/4556820.html</a><br>参考文献：<a href="https://www.cnblogs.com/liugang-vip/p/5616484.html" target="_blank" rel="noopener">https://www.cnblogs.com/liugang-vip/p/5616484.html</a></p>
 
       
 
@@ -342,6 +347,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/04/21/js实现继承方式及特点/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js实现继承方式及特点
+        
+      </div>
+    </a>
   
   
     <a href="/2018/03/31/从输入url到页面加载时发生了什么？/" id="article-nav-older" class="article-nav-link-wrap">
