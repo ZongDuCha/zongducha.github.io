@@ -130,7 +130,9 @@ o.fn()是通过o调用的，this自然指向了o
 
 1. 如果一个函数中有this，但是它没有被上一级的对象所调用，那么this指向的就是window，严格模式除外。
 
-2. 如果一个函数中有this，这个函数有被上一级的对象所调用，那么this指向的就是上一级的对象。尽管这个函数是被最外层的对象所调用，this指向的也只是它上一级的对象
+2. 如果这个函数被上一级的对象所调用，那么this指向的就是上一级的对象。尽管这个函数被多个的对象所调用，this指向的还是调用它的上一级的对象
+
+3. 在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window
 
 ```js 
 var o = {
@@ -150,7 +152,7 @@ o.b.fn();
 
 ### 当this遇到return时的问题
 
-如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this还是指向函数的实例。
+如果返回值是一个对象，那么this指向的就是那个返回的对象，如果返回值不是一个对象那么this指向的还是函数实例。
 
 ```js 
 function fn()  
@@ -212,7 +214,7 @@ console.log(a.name); //js
 
 - 在严格模式下，默认的this不是window，而是undefined。在node中，是Global对象
 
-- new 会改变this的对象，就好像用了call或apply方法（但实际上可能并不是）
+- new 会改变this的对象，就好像new使用了call或apply方法（但实际上可能并不是）
 
 
 参考文献：https://www.cnblogs.com/pssp/p/5216085.html

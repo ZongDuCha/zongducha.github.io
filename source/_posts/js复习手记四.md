@@ -3,48 +3,15 @@ title: js复习手记四
 date: 2018-02-04 15:56:16
 tags: 主页
 ---
+## Element.matches() 
 
-### 闭包 会持有父方法的局部变量并且不会随着父方法的销毁而销毁,闭包就
-
-是在提供了一个在外部访问另一个函数内部局部变量的方式。
-<!-- more -->
-
-```js
-// 不使用闭包
-function add(){
-    var cont = 0;
-    return cont += 1;
-}
-add()
-add()
-add()
-// 1
-// 1
-// 1
-
-// 闭包
-var tin;
-var add = function(){
-    var cont = 0;
-    tin = function(){return cont += 1;};
-    return tin
-}();
-
-add()
-add()
-add()
-// 1
-// 2
-// 3
-```
-
-### Element.matches() 如果元素包含指定的选择器字符串，存在返回true，
+如果元素包含指定的选择器字符串，存在返回true，
 
 不存在则返回false
 
-#### 目前在非标准名称 `matchesSelector()` 实现了这个方法，并且不同浏览
+<!-- more -->
 
-器使用前需要前缀。
+#### 目前在非标准名称 `matchesSelector()` 实现了这个方法，并且不同浏览器使用前需要前缀。
 
 - el.matchesSelector( DOMElement element, String selector )
 
@@ -70,9 +37,7 @@ if (!Element.prototype.matchesSelector) {
     Element.prototype.oMatchesSelector || 
     Element.prototype.webkitMatchesSelector ||
     (function(){
-            var matches = (this.document || this.ownerDocument).querySelectorAll
-
-(s),
+            var matches = (this.document || this.ownerDocument).querySelectorAll(s),
             i = matches.length;
             while (--i >= 0 && matches.item(i) !== this) {}
             return !!i;
@@ -83,7 +48,7 @@ if (!Element.prototype.matchesSelector) {
 
 var body = document.querySelector('.main')
 var ifAtt = body.matchesSelector('.main')
-console.log(ifAtt)
+console.log(ifAtt) // true
 ```
 
 需要注意的是：如果指定的选择器是数字开头的则会报错，如
@@ -267,6 +232,19 @@ div.getComputedStyle('height')
 }
 ```
 兼容性：IE10及以上 ,这种方法跟第4种方法比较起来代码也更加简洁。
+
+
+##### 6.fixed+top+transform
+
+```js
+.demo {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+```
+
 
 ##### 网上终极法
 
